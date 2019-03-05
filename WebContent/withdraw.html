@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  
+<style>
+body {
+background-image: url("image/bank.jpg");
+background-size: 700px 700px;}
+form {
+  margin: auto;
+  width: 50%;
+  border: 3px;
+  padding-top: 150px;
+  padding-right: 30px;
+  padding-bottom: 50px;
+  padding-left: 80px;
+   color: blue;
+}
+</style>
+</head>
+<body>
+<form method="post" action="Withdraw">
+<div class="center">
+<div class="form-group">
+      <h1><label for="inputdefault">Enter Pin</label></h1>
+      <input class="form-control" id="inputdefault" type="password" name="pin">
+    </div>
+    <div class="form-group">
+      <h1><label for="inputdefault">Enter Account number</label></h1>
+      <input class="form-control" id="inputdefault" type="number" name="acno">
+    </div>
+<div class="form-group">
+    
+      <h1><label for="inputdefault">Enter Amount</label></h1>
+      <input class="form-control" id="inputdefault" type="number" name="amount">
+    </div>
+    <h2><button type="submit" class="btn btn-primary">Withdraw</button></h2>
+</div>
+</form>
+</body>
+</html>

@@ -1,0 +1,20 @@
+create table bank_user(
+accountnumber number,
+name varchar2(30),
+email varchar2(40),
+password varchar2(20),
+dateofbirth date,
+gender varchar2(10),
+city varchar2(20),
+bankbalance number DEFAULT 0,
+pin number,PRIMARY KEY (email,pin));
+
+create sequence bank_user_acno_seq start with 1326001 increment by 1;
+
+desc bank_user;
+
+select *from bank_user;
+
+insert into bank_user(accountnumber,name,email,password,dateofbirth,gender,city,bankbalance,pin) values(bank_user_acno_seq.nextval,'Karthika',
+'karthi@gmail.com','karthi',TO_DATE('1997-11-24','yyyy-mm-dd'),
+'female','coimbatore',25000,1234);
