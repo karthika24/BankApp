@@ -14,7 +14,6 @@
 #view balance
 #insufficient balance notification
 #logout
-
 #Usecases for admin
 #admin login
 #View all the details of users
