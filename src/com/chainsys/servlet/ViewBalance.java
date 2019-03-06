@@ -38,7 +38,8 @@ public class ViewBalance extends HttpServlet {
 		rd.forward(request, response);
 		}
 		else {
-			RequestDispatcher rd = request.getRequestDispatcher("invalid3.html");
+			request.setAttribute("MESSAGE", "*Invalid pin or account number");
+			RequestDispatcher rd = request.getRequestDispatcher("viewbalance.jsp");
 			rd.forward(request, response);
 		}
 	} catch (SQLException e) {

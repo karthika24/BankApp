@@ -115,7 +115,7 @@
         </div>
 		<div class="clearfix">
             <!-- <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label> -->
-            <p><a href="reset.html">Forgot Password?</a> </p>
+            <p><a href="reset.jsp">Forgot Password?</a> </p>
         </div>
          <h3>${ERROR}</h3>
     </form>

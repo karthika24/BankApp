@@ -40,7 +40,8 @@ public class ResetServlet extends HttpServlet {
 		}
 		else
 		{
-			RequestDispatcher rd = request.getRequestDispatcher("invalid.html");
+			request.setAttribute("ERROR", "*Invalid pin or account number");
+			RequestDispatcher rd = request.getRequestDispatcher("reset.jsp");
 			rd.forward(request, response);
 		}
 	} catch (SQLException e) {

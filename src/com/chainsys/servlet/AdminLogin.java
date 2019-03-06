@@ -32,7 +32,7 @@ public class AdminLogin extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("listofusers.jsp");
 			rd.forward(request, response);
 		} else {
-			request.setAttribute("ERROR", "Wrong password");
+			request.setAttribute("ERROR", "*Wrong user name and password");
 			RequestDispatcher rd = request
 					.getRequestDispatcher("admin.jsp");
 			rd.include(request, response);

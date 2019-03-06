@@ -36,12 +36,14 @@ public class Deposit extends HttpServlet {
 		int rows=dao.addBalance(user);
 		if(rows>0) {
 			request.setAttribute("USER", user);
-			RequestDispatcher rd = request.getRequestDispatcher("redirect.html");
+			request.setAttribute("MESSAGE", "*Transaction completed successfully");
+			RequestDispatcher rd = request.getRequestDispatcher("viewbalance.jsp");
 			rd.forward(request, response);
 		}
 		else
 		{
-			RequestDispatcher rd = request.getRequestDispatcher("invalid1.html");
+			request.setAttribute("ERROR", "*Invalid pin or account number");
+			RequestDispatcher rd = request.getRequestDispatcher("deposit.jsp");
 			rd.forward(request, response);
 		}
 	} catch (SQLException e) {

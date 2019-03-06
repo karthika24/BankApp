@@ -43,7 +43,7 @@ public class LoginController extends HttpServlet {
 						.getRequestDispatcher("details.jsp");
 				rd.forward(request, response);
 			} else {
-				request.setAttribute("ERROR", "Wrong password. Try again or click forget password");
+				request.setAttribute("ERROR", "*Wrong password. Try again or click forget password");
 				RequestDispatcher rd = request
 						.getRequestDispatcher("newlogin.jsp");
 				rd.include(request, response);

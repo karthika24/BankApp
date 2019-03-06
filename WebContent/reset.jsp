@@ -1,8 +1,10 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Reset password</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>reset</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <style>
@@ -18,6 +20,9 @@ background-size: 700px 700px;
   padding-right: 30px;
   padding-bottom: 50px;
   padding-left: 80px;
+}
+h3 {
+color:red;
 }
 </style>
 </head>
@@ -39,6 +44,7 @@ background-size: 700px 700px;
 </div>
 <button type="submit" class="btn btn-primary">Reset</button>
 </h2>
+<h3>${ERROR}</h3>
 </div>
 </form>
 </body>
