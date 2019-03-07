@@ -44,7 +44,7 @@ public class NewUserServlet extends HttpServlet {
 			validator.validatePin(user);
 		
 		UserDAO dao = new UserDAO();
-			int result=dao.insertUser(user);
+			boolean result=dao.insertUser(user);
 //			ArrayList<User> list=dao.findAll();
 //			request.setAttribute("USERS", list);
 //			if(result>0)
@@ -57,7 +57,7 @@ public class NewUserServlet extends HttpServlet {
 //					rd.forward(request, response);
 //		     }
 			
-			if(result>0){
+			if(result){
 				RequestDispatcher rd=request.getRequestDispatcher("newlogin.jsp");
 				rd.forward(request, response);
 			}

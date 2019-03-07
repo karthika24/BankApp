@@ -34,6 +34,11 @@ padding-left:1100px;
 </style>
 </head>
 <body>
+<div align="right">
+		<a href="firstpage.html" class="btn btn-info btn-lg"> <span
+			class="glyphicon glyphicon-off"></span> Logout
+		</a>
+	</div>
 <h1><a href="admin.jsp">Logout</a></h1>
 <div class="center">
 <h3>List of users</h3>

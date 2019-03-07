@@ -19,8 +19,10 @@ public class ConnectionUtil {
 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
+			throw new RuntimeException("Unable to load the driver");
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new RuntimeException("Unable to get the connection");
 		}
 		return connection;
 	}

@@ -27,6 +27,11 @@ color:red;
 </style>
 </head>
 <body>
+<div align="right">
+		<a href="firstpage.html" class="btn btn-info btn-lg"> <span
+			class="glyphicon glyphicon-off"></span> Logout
+		</a>
+	</div>
 <form method="post" action="ResetServlet">
 <div class="center">
 <h2>

@@ -30,6 +30,11 @@ color:red;
 </style>
 </head>
 <body>
+<div align="right">
+		<a href="firstpage.html" class="btn btn-info btn-lg"> <span
+			class="glyphicon glyphicon-off"></span> Logout
+		</a>
+	</div>
 <form method="post" action="ViewBalance">
 <div class="center">
 <h3>${MESSAGE}</h3>

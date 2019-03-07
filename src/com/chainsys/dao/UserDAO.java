@@ -1,4 +1,4 @@
-package com.chainsys;
+package com.chainsys.dao;
 
 import java.sql.Connection;
 import java.sql.Date;

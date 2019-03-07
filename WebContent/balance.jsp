@@ -25,6 +25,11 @@ form {
 </style>
 </head>
 <body>
+<div align="right">
+		<a href="firstpage.html" class="btn btn-info btn-lg"> <span
+			class="glyphicon glyphicon-off"></span> Logout
+		</a>
+	</div>
 <form action="newlogin.jsp">
 <h2>Account balance: ${USER.bankBalance} </h2>
 <button type="submit" class="btn btn-primary">Logout</button>

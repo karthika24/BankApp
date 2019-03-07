@@ -19,9 +19,6 @@ public class LoginController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
-	
-		
 		//System.out.println("Session : " + session);
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");

@@ -28,6 +28,11 @@ color:red;
 </style>
 </head>
 <body>
+<div align="right">
+		<a href="firstpage.html" class="btn btn-info btn-lg"> <span
+			class="glyphicon glyphicon-off"></span> Logout
+		</a>
+	</div>
 <form method="post" action="Deposit">
 <div class="center">
 <div class="form-group">
