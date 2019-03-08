@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.chainsys.User;
-import com.chainsys.UserDAO;
+import com.chainsys.dao.UserDAO;
+import com.chainsys.model.User;
 
 /**
  * Servlet implementation class Deposit
@@ -33,8 +33,8 @@ public class Deposit extends HttpServlet {
       UserDAO dao = new UserDAO();
       System.out.println(user);
       try {
-		int rows=dao.addBalance(user);
-		if(rows>0) {
+		 boolean result=dao.deposit(user);
+		if(result) {
 			request.setAttribute("USER", user);
 			request.setAttribute("MESSAGE", "*Transaction completed successfully");
 			RequestDispatcher rd = request.getRequestDispatcher("viewbalance.jsp");

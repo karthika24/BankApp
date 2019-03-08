@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.chainsys.User;
-import com.chainsys.UserDAO;
-import com.chainsys.Validator;
+import com.chainsys.dao.UserDAO;
+import com.chainsys.model.User;
+import com.chainsys.validator.Validator;
 
 
 

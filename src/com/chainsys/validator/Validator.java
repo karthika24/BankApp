@@ -1,4 +1,6 @@
-package com.chainsys;
+package com.chainsys.validator;
+
+import com.chainsys.model.User;
 
 
 public class Validator {

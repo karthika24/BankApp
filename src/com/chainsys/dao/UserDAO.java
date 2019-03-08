@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.chainsys.model.User;
 import com.chainsys.util.ConnectionUtil;
 
 public class UserDAO {
@@ -144,7 +145,8 @@ public class UserDAO {
 
 	}
 
-	public int addBalance(User user) throws SQLException {
+	public boolean deposit(User user) throws SQLException {
+		boolean result=false;
 //		int temp1, temp2;
 //		Connection connection = ConnectionUtil.getConnection();
 //		String sql = "select bankbalance from bank_user where pin=? and accountnumber=?";
@@ -178,11 +180,16 @@ public class UserDAO {
 		System.out.println("Rows updated: " + rows);
 
 		ConnectionUtil.close(connection2, preparedStatement2, null);
-		return rows;
+		
+		if(rows>0)
+		{
+			result=true;
+		}
+		return result;
 
 	}
 
-	public int withdrawBalance(User user) throws SQLException {
+	public int withdraw(User user) throws SQLException {
 		int temp1, temp2, rows = 0;
 		Connection connection = ConnectionUtil.getConnection();
 		String sql = "select bankbalance from bank_user where pin=? and accountnumber=?";

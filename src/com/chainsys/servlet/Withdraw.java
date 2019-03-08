@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.chainsys.User;
-import com.chainsys.UserDAO;
+import com.chainsys.dao.UserDAO;
+import com.chainsys.model.User;
 
 /**
  * Servlet implementation class Withdraw
@@ -32,7 +32,7 @@ public class Withdraw extends HttpServlet {
      UserDAO dao = new UserDAO();
      System.out.println(user);
      try {
-		int rows=dao.withdrawBalance(user);
+		int rows=dao.withdraw(user);
 		System.out.println(rows);
 		if(rows==1) {
 			request.setAttribute("USER", user);

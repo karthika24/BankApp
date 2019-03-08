@@ -7,12 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Users</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<<<<<<< HEAD
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  
-=======
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
->>>>>>> 8b31b3d648d0df4f426478451e3c38493035e2b0
 <style>
 body {
 background-image: url("image/bank.jpg");
