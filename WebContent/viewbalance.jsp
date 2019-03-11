@@ -40,11 +40,11 @@ color:red;
 <h3>${MESSAGE}</h3>
 <div class="form-group">
       <h1><label for="inputdefault">Enter Pin</label></h1>
-      <input class="form-control" id="inputdefault" type="password" name="pin">
+      <input class="form-control" id="inputdefault" type="tel" name="pin" pattern="[1-9]{4}" maxlength="4" required>
     </div>
     <div class="form-group">
       <h1><label for="inputdefault">Enter Account number</label></h1>
-      <input class="form-control" id="inputdefault" type="number" name="acno">
+      <input class="form-control" id="inputdefault" type="number" name="acno" required>
     </div>
     <h2><button type="submit" class="btn btn-primary">View Balance</button></h2>
     

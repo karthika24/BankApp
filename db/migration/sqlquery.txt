@@ -5,31 +5,23 @@ name varchar2(30) not null,
 email varchar2(40) unique not null,
 password varchar2(20) not null,
 dateofbirth date,
-phone number,
 gender varchar2(10),
 city varchar2(20),
 bankbalance number DEFAULT 0,
 pin number,
 constraint ac_no_pk PRIMARY KEY(accountnumber)
 );
-select *from bank_user;
-
 
 create sequence bank_user_acno_seq start with 1326001 increment by 1;
-desc bank_user;
- alter table bank_user modify pin number not null;
-
-desc bank_user;
 
 create table transactions(
-accountnumber number,
 transaction_id number,
-credit varchar(10),
-debit varchar(10),
+accountnumber number,
+status varchar(10),
 transaction_date date,
+amount number,
 constraint trans_id_pk PRIMARY KEY (transaction_id),
 CONSTRAINT ac_no_fk FOREIGN KEY (accountnumber) REFERENCES bank_user(accountnumber)
 );
 
 create sequence transaction_id_seq start with 1 increment by 1;
-desc transactions;

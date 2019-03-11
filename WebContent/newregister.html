@@ -45,7 +45,7 @@ padding-left:300px;
 				<label for="Name" class="col-sm-3 control-label">Name*</label>
 				<div class="col-sm-9">
 					<input type="text" name="name" placeholder="Name"
-						class="form-control" autofocus required>
+						pattern="[A-Za-z]+" class="form-control"  autofocus required>
 				</div>
 			</div>
 			<div class="form-group">
@@ -62,21 +62,6 @@ padding-left:300px;
 						class="form-control" required>
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="password" class="col-sm-3 control-label">Confirm
-					Password*</label>
-				<div class="col-sm-9">
-					<input type="password" placeholder="Password"
-						class="form-control" required>
-				</div>
-			</div>
-			<div class="form-group">
-                    <label for="phoneNumber" class="col-sm-3 control-label">Phone number </label>
-                    <div class="col-sm-9">
-                        <input type="number" name="phonenumber" placeholder="Phone number" maxlength=10 class="form-control" required>
-                        <span class="help-block">Your phone number won't be disclosed anywhere </span>
-                    </div>
-                </div>
 			<div class="form-group">
 				<label for="birthDate" class="col-sm-3 control-label">Date
 					of Birth*</label>
@@ -96,14 +81,15 @@ padding-left:300px;
 						<option value="Ooty">Ooty</option>
 						<option value="Thanjavur">Thanjavur</option>
 						<option value="Tiruppur">Tiruppur</option>
+						<option value="Salem">Salem</option>
 					</select>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="pin" class="col-sm-3 control-label">Pin* </label>
 				<div class="col-sm-9">
-					<input type="password" name="pin"
-						placeholder="Please enter 4 digit pin" class="form-control" required>
+					<input type="tel" name="pin" pattern="[1-9]{4}"
+					 maxlength="4" placeholder="Please enter 4 digit pin" class="form-control" required>
 				</div>
 			</div>
 			<div class="form-group">

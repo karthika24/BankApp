@@ -5,11 +5,31 @@ import java.time.LocalDate;
 public class Transactions {
 	private int accountNumber;
 	private int id;
-	private String credit;
-	private String debit;
+	private int pin;
+	private String status;
 	private LocalDate transactionDate;
+	private int amount;
 	private User user;
 	
+	
+	public int getAmount() {
+		return amount;
+	}
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+	public int getPin() {
+		return pin;
+	}
+	public void setPin(int pin) {
+		this.pin = pin;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public int getAccountNumber() {
 		return accountNumber;
 	}
@@ -22,18 +42,8 @@ public class Transactions {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getCredit() {
-		return credit;
-	}
-	public void setCredit(String credit) {
-		this.credit = credit;
-	}
-	public String getDebit() {
-		return debit;
-	}
-	public void setDebit(String debit) {
-		this.debit = debit;
-	}
+	
+	
 	public LocalDate getTransactionDate() {
 		return transactionDate;
 	}

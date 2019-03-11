@@ -24,9 +24,6 @@ background-size: 700px 700px;
   padding-left: 80px;
  
 }
-h1 {
-padding-left:1100px;
-}
 </style>
 </head>
 <body>
@@ -35,7 +32,6 @@ padding-left:1100px;
 			class="glyphicon glyphicon-off"></span> Logout
 		</a>
 	</div>
-<h1><a href="admin.jsp">Logout</a></h1>
 <div class="center">
 <h3>List of users</h3>
 	<table class="table table-hover">
@@ -60,7 +56,6 @@ padding-left:1100px;
 					<td>${user.dateOfBirth}</td>
 					<td>${user.gender}</td>
 					<td>${user.city}</td>
-					
 			</c:forEach>
 		</tbody>
 	</table>

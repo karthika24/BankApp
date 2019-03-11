@@ -1,8 +1,7 @@
 package com.chainsys.servlet;
 
 import java.io.IOException;
-import java.util.List;
-
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,10 +24,10 @@ public class AdminLogin extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		UserDAO dao = new UserDAO();
-		List<User> list;
+		ArrayList<User> list = new ArrayList<User>();
 		try {
 			list = dao.findAll();
-		
+		      
 		if (email.equalsIgnoreCase("admin@gmail.com")
 				&& password.equalsIgnoreCase("admin")) {
 			request.setAttribute("USER", list);

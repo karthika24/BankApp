@@ -15,6 +15,7 @@ public class User {
 	private int amount;
 	
 	
+	
 	public int getAmount() {
 		return amount;
 	}
@@ -94,13 +95,7 @@ public class User {
 				+ bankBalance + ", amount=" + amount + "]";
 	}
 	
-	
-	
-	
-	
-	
-	
-	
+
 	
 
 }

@@ -37,15 +37,15 @@ color:red;
 <div class="center">
 <div class="form-group">
       <h1><label for="inputdefault">Enter Pin</label></h1>
-      <input class="form-control" id="inputdefault" type="password" name="pin">
+      <input class="form-control" id="inputdefault" type="tel" name="pin" pattern="[1-9]{4}" maxlength="4" required>
     </div>
     <div class="form-group">
       <h1><label for="inputdefault">Enter Account number</label></h1>
-      <input class="form-control" id="inputdefault" type="number" name="acno">
+      <input class="form-control" id="inputdefault" type="number" name="acno" required>
     </div>
 <div class="form-group">
       <h1><label for="inputdefault">Enter Amount</label></h1>
-      <input class="form-control" id="inputdefault" type="number" name="amount">
+      <input class="form-control" id="inputdefault" type="number" name="amount" required>
     </div>
     <h2><button type="submit" class="btn btn-primary">Deposit</button></h2>
 </div>

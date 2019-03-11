@@ -1,15 +1,17 @@
 package com.chainsys.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.chainsys.dao.UserDAO;
-import com.chainsys.model.User;
+import com.chainsys.dao.TransactionsDAO;
+import com.chainsys.model.Transactions;
 
 /**
  * Servlet implementation class HistoryServlet
@@ -20,13 +22,27 @@ public class HistoryServlet extends HttpServlet {
        
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int pin=Integer.parseInt(request.getParameter("pin"));
 	     int accountnumber=Integer.parseInt(request.getParameter("acno"));
-	     System.out.println(pin);
-	     User user = new User();
-	     user.setPin(pin);
-	     user.setAccountNumber(accountnumber);
-	     UserDAO dao = new UserDAO();
+         Transactions transactions = new Transactions();  
+         transactions.setAccountNumber(accountnumber);
+         TransactionsDAO dao = new TransactionsDAO();
+         try {
+			ArrayList<Transactions> list=dao.findByAccountNumber(transactions);
+			if(list.isEmpty()){
+				request.setAttribute("MESSAGE", "*Invalid Account number");
+				RequestDispatcher rd = request.getRequestDispatcher("history.jsp");
+				rd.forward(request, response);
+			}
+			else
+			{
+				request.setAttribute("TRANSACTIONS", list);
+				RequestDispatcher rd = request.getRequestDispatcher("transactionlist.jsp");
+				rd.forward(request, response);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	     
 	}
 
 }
