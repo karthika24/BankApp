@@ -12,11 +12,9 @@ public class ConnectionUtil {
 		try {
 			// 1.load the class
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-
 			// 2.get the connection
 			String url = "jdbc:oracle:thin:@localhost:1521:XE";
 			connection = DriverManager.getConnection(url, "hr", "hr");
-
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Unable to load the driver");
@@ -41,7 +39,7 @@ public class ConnectionUtil {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new RuntimeException("Unable to close the connection");
 		}
 	}
-
 }

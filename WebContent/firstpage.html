@@ -4,66 +4,76 @@
 <meta charset="ISO-8859-1">
 <title>home</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style type="text/css">
-
-.nav-item::after{
-    content:'';
-    display:block;
-    width:0px;
-    height:4px;
-    background:#ff0000;
-    transition: 0.2s;
-    margin-top:-10px;
+.nav-item::after {
+	content: '';
+	display: block;
+	width: 0px;
+	height: 4px;
+	background: #ff0000;
+	transition: 0.2s;
+	margin-top: -10px;
 }
 
-.nav-item:hover::after{width:100%;}
+.nav-item:hover::after {
+	width: 100%;
+}
 
-
-.nav-link{padding:15px 5px;transition:0.2s;}
+.nav-link {
+	padding: 15px 5px;
+	transition: 0.2s;
+}
 
 .navbar-nav .nav-link {
-    
-    color:#000;
-    font-weight:bold;
-    font-size:18px;
+	color: #000;
+	font-weight: bold;
+	font-size: 18px;
 }
 
-.navbar-nav .active > .nav-link{
-  
-    width:100%;
-    height:51px;
-    
-  border-bottom: .25rem solid transparent;
-  border-bottom-color: #ed4137;
-   
+.navbar-nav .active>.nav-link {
+	width: 100%;
+	height: 51px;
+	border-bottom: .25rem solid transparent;
+	border-bottom-color: #ed4137;
 }
+
 body {
-		background-image: url("image/bank.jpg");
-		background-size: 700px 700px;
-	}
+	background-image: url("image/bank.jpg");
+	background-size: 700px 700px;
+}
+
+.container {
+	padding-top: 100px;
+	text-align: center;
+	color: blue;
+	font-size: 50px;
+}
 </style>
 </head>
 <body>
- <nav class="navbar navbar-expand-lg">
+	<nav class="navbar navbar-expand-lg">
 
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a href="firstpage.html" class="nav-link">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="newlogin.jsp" class="nav-link">User Login</a>
-                    </li>
-                    
-                    
-                    <li class="nav-item">
-                        <a href="admin.jsp" class="nav-link">Admin Login</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+		<ul class="navbar-nav">
+			<li class="nav-item"><a href="firstpage.html" class="nav-link">Home</a>
+			</li>
+			<li class="nav-item"><a href="newlogin.jsp" class="nav-link">User
+					Login</a></li>
+
+
+			<li class="nav-item"><a href="admin.jsp" class="nav-link">Admin
+					Login</a></li>
+		</ul>
+		</div>
+	</nav>
+	<div class="container">BANK APPLICATION</div>
 </body>
 </html>

@@ -7,7 +7,7 @@ password varchar2(20) not null,
 dateofbirth date,
 gender varchar2(10),
 city varchar2(20),
-bankbalance number DEFAULT 0,
+bankbalance float DEFAULT 0,
 pin number,
 constraint ac_no_pk PRIMARY KEY(accountnumber)
 );
@@ -19,7 +19,7 @@ transaction_id number,
 accountnumber number,
 status varchar(10),
 transaction_date date,
-amount number,
+amount float,
 constraint trans_id_pk PRIMARY KEY (transaction_id),
 CONSTRAINT ac_no_fk FOREIGN KEY (accountnumber) REFERENCES bank_user(accountnumber)
 );

@@ -1,7 +1,7 @@
 package com.chainsys.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,32 +18,23 @@ import com.chainsys.model.User;
 @WebServlet("/AdminLogin")
 public class AdminLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		UserDAO dao = new UserDAO();
-		ArrayList<User> list = new ArrayList<User>();
-		try {
-			list = dao.findAll();
-		      
+		List<User> list = dao.findAll();
 		if (email.equalsIgnoreCase("admin@gmail.com")
 				&& password.equalsIgnoreCase("admin")) {
 			request.setAttribute("USER", list);
-			RequestDispatcher rd = request.getRequestDispatcher("listofusers.jsp");
+			RequestDispatcher rd = request
+					.getRequestDispatcher("listofusers.jsp");
 			rd.forward(request, response);
 		} else {
 			request.setAttribute("ERROR", "*Wrong user name and password");
-			RequestDispatcher rd = request
-					.getRequestDispatcher("admin.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");
 			rd.include(request, response);
 		}
-		}
-		catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
-
 }

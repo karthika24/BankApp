@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.chainsys.model.Transactions;
 import com.chainsys.model.User;
@@ -14,14 +15,13 @@ import com.chainsys.util.ConnectionUtil;
 public class UserDAO {
 	TransactionsDAO dao = new TransactionsDAO();
 
-	public boolean insertUser(User user) throws Exception {
+	public boolean insertUser(User user) {
 		boolean success = false;
 		try {
 			Connection connection = ConnectionUtil.getConnection();
 			String sql = "insert into bank_user(accountnumber,name,email,password,dateofbirth,gender,city,pin) values(bank_user_acno_seq.nextval,?,?,?,?,?,?,?)";
 			PreparedStatement preparedStatement = connection
 					.prepareStatement(sql);
-
 			preparedStatement.setString(1, user.getName());
 			preparedStatement.setString(2, user.getEmail());
 			preparedStatement.setString(3, user.getPassword());
@@ -29,7 +29,6 @@ public class UserDAO {
 			preparedStatement.setString(5, user.getGender());
 			preparedStatement.setString(6, user.getCity());
 			preparedStatement.setInt(7, user.getPin());
-
 			int rows = preparedStatement.executeUpdate();
 			System.out.println("Rows inserted: " + rows);
 			ConnectionUtil.close(connection, preparedStatement, null);
@@ -39,23 +38,20 @@ public class UserDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			success = false;
-			// throw new Exception("Unable to insert book");
 		}
 		return success;
 	}
 
-	public ArrayList<User> findAll() throws Exception {
-		ArrayList<User> list = new ArrayList<User>();
+	public List<User> findAll() {
+		List<User> list = new ArrayList<User>();
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		try {
-
 			connection = ConnectionUtil.getConnection();
 			String sql = "select accountnumber,name,email,password,dateofbirth,gender,city from bank_user order by name asc";
 			preparedStatement = connection.prepareStatement(sql);
 			resultSet = preparedStatement.executeQuery();
-
 			while (resultSet.next()) {
 				User user = new User();
 				user.setAccountNumber(resultSet.getInt("accountnumber"));
@@ -68,28 +64,28 @@ public class UserDAO {
 				user.setCity(resultSet.getString("city"));
 				list.add(user);
 			}
-
+			ConnectionUtil.close(connection, preparedStatement, resultSet);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new Exception("Unable to fetch the details");
-		} finally {
-			ConnectionUtil.close(connection, preparedStatement, resultSet);
 		}
 		return list;
 	}
 
-	public boolean validator(User user) throws SQLException {
+	public boolean validator(User user) {
 		boolean result = false;
-		Connection connection = ConnectionUtil.getConnection();
-		String sql = "select accountnumber,name,email,password,dateofbirth,gender,city from bank_user where email=? and password=?";
-		PreparedStatement preparedStatement = connection.prepareStatement(sql);
-		preparedStatement.setString(1, user.getEmail());
-		preparedStatement.setString(2, user.getPassword());
-
-		ResultSet resultSet = preparedStatement.executeQuery();
-		result = resultSet.next();
+		try {
+			Connection connection = ConnectionUtil.getConnection();
+			String sql = "select accountnumber,name,email,password,dateofbirth,gender,city from bank_user where email=? and password=?";
+			PreparedStatement preparedStatement;
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, user.getEmail());
+			preparedStatement.setString(2, user.getPassword());
+			ResultSet resultSet = preparedStatement.executeQuery();
+			result = resultSet.next();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return result;
-
 	}
 
 	public User findByEmail(final User user) {
@@ -101,7 +97,6 @@ public class UserDAO {
 					.prepareStatement(sql);
 			preparedStatement.setString(1, user.getEmail());
 			ResultSet resultSet = preparedStatement.executeQuery();
-			// user = null;
 			if (resultSet.next()) {
 				user1 = new User();
 				user1.setAccountNumber(resultSet.getInt("accountnumber"));
@@ -111,123 +106,127 @@ public class UserDAO {
 						.toLocalDate());
 				user1.setGender(resultSet.getString("gender"));
 				user1.setCity(resultSet.getString("city"));
-
 			}
 			ConnectionUtil.close(connection, preparedStatement, resultSet);
-
 		} catch (SQLException e) {
 			e.printStackTrace();
-			// throw new Exception("Unable to find book");
 		}
 		return user1;
-
 	}
 
-	public User viewBalance(User user) throws SQLException {
-		Connection connection = ConnectionUtil.getConnection();
-		String sql = "select bankbalance from bank_user where pin=? and accountnumber=?";
-		PreparedStatement preparedStatement = connection.prepareStatement(sql);
-		preparedStatement.setInt(1, user.getPin());
-		preparedStatement.setInt(2, user.getAccountNumber());
-		ResultSet resultSet = preparedStatement.executeQuery();
-		user = null;
-		if (resultSet.next()) {
-			user = new User();
-			user.setBankBalance(resultSet.getInt("bankbalance"));
-
+	public User viewBalance(User user) {
+		User user1 = null;
+		try {
+			Connection connection = ConnectionUtil.getConnection();
+			String sql = "select bankbalance from bank_user where pin=? and accountnumber=?";
+			PreparedStatement preparedStatement;
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, user.getPin());
+			preparedStatement.setInt(2, user.getAccountNumber());
+			ResultSet resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				user1 = new User();
+				user1.setBankBalance(resultSet.getInt("bankbalance"));
+			}
+			ConnectionUtil.close(connection, preparedStatement, resultSet);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-		ConnectionUtil.close(connection, preparedStatement, resultSet);
-		return user;
-
+		return user1;
 	}
 
-	public boolean deposit(User user) throws SQLException {
-		Transactions transactions=null;
+	public boolean deposit(User user) {
+		Transactions transactions = null;
 		boolean result = false;
-		Connection connection = ConnectionUtil.getConnection();
-		String sql2 = "UPDATE bank_user SET bankbalance = bankbalance+? WHERE pin = ? and accountnumber=?";
-		PreparedStatement preparedStatement = connection.prepareStatement(sql2);
-		preparedStatement.setInt(1, user.getAmount());
-		preparedStatement.setInt(2, user.getPin());
-		preparedStatement.setInt(3, user.getAccountNumber());
-		int rows = preparedStatement.executeUpdate();
-		System.out.println("Rows updated: " + rows);
-		ConnectionUtil.close(connection, preparedStatement, null);
-		//System.out.println("user balance = "+ user);
-		if (rows > 0) {
-			result = true;
-			transactions = new Transactions();
-			transactions.setAccountNumber(user.getAccountNumber());
-			transactions.setAmount(user.getAmount());
-			dao.insertDeposit(transactions); 
+		try {
+			Connection connection = ConnectionUtil.getConnection();
+			String sql2 = "UPDATE bank_user SET bankbalance = bankbalance+? WHERE pin = ? and accountnumber=?";
+			PreparedStatement preparedStatement = connection
+					.prepareStatement(sql2);
+			preparedStatement.setFloat(1, user.getAmount());
+			preparedStatement.setInt(2, user.getPin());
+			preparedStatement.setInt(3, user.getAccountNumber());
+			int rows = preparedStatement.executeUpdate();
+			System.out.println("Rows updated: " + rows);
+			ConnectionUtil.close(connection, preparedStatement, null);
+			if (rows > 0) {
+				result = true;
+				transactions = new Transactions();
+				transactions.setAccountNumber(user.getAccountNumber());
+				transactions.setAmount(user.getAmount());
+				dao.insertDeposit(transactions);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return result;
 	}
 
-	public int withdraw(User user) throws SQLException {
+	public int withdraw(User user) {
 		Transactions transactions = null;
-		int temp1, temp2, rows = 0;
-		Connection connection = ConnectionUtil.getConnection();
-		String sql = "select bankbalance from bank_user where pin=? and accountnumber=?";
-		PreparedStatement preparedStatement = connection.prepareStatement(sql);
-		preparedStatement.setInt(1, user.getPin());
-		preparedStatement.setInt(2, user.getAccountNumber());
-		ResultSet resultSet = preparedStatement.executeQuery();
-		if (resultSet.next()) {
-			user.setBankBalance(resultSet.getInt("bankbalance"));
-
-		}
-		temp1 = user.getBankBalance();
-		temp2 = user.getAmount();
-		System.out.println(temp1);
-		System.out.println(temp2);
-		if (temp1 != 0) {
-			if (temp1 > temp2) {
-				int withdrawAmount = temp1 - temp2;
-				System.out.println(withdrawAmount);
-				user.setBankBalance(withdrawAmount);
-				System.out.println(user); // correct
-				ConnectionUtil.close(connection, preparedStatement, resultSet);
-				Connection connection2 = ConnectionUtil.getConnection();
-
-				String sql2 = "UPDATE bank_user SET bankbalance = ? WHERE pin = ? and accountnumber=?";
-				PreparedStatement preparedStatement2 = connection2
-						.prepareStatement(sql2);
-				preparedStatement2.setInt(1, user.getBankBalance());
-				preparedStatement2.setInt(2, user.getPin());
-				preparedStatement2.setInt(3, user.getAccountNumber());
-				rows = preparedStatement2.executeUpdate();
-				System.out.println("Rows updated: " + rows);
-				if(rows>0){
-					transactions = new Transactions();
-					transactions.setAccountNumber(user.getAccountNumber());
-					transactions.setAmount(user.getAmount());
-					dao.insertWithdraw(transactions); 
-				}
-			} else {
-				rows = 404;
+		int rows = 0;
+		float initial, newbalance;
+		try {
+			Connection connection = ConnectionUtil.getConnection();
+			String sql = "select bankbalance from bank_user where pin=? and accountnumber=?";
+			PreparedStatement preparedStatement = connection
+					.prepareStatement(sql);
+			preparedStatement.setInt(1, user.getPin());
+			preparedStatement.setInt(2, user.getAccountNumber());
+			ResultSet resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				user.setBankBalance(resultSet.getInt("bankbalance"));
 			}
+			initial = user.getBankBalance();
+			newbalance = user.getAmount();
+			if (initial != 0) {
+				if (initial > newbalance) {
+					float withdrawAmount = initial - newbalance;
+					user.setBankBalance(withdrawAmount);
+					ConnectionUtil.close(connection, preparedStatement,
+							resultSet);
+					Connection connection2 = ConnectionUtil.getConnection();
+					String sql2 = "UPDATE bank_user SET bankbalance = ? WHERE pin = ? and accountnumber=?";
+					PreparedStatement preparedStatement2 = connection2
+							.prepareStatement(sql2);
+					preparedStatement2.setFloat(1, user.getBankBalance());
+					preparedStatement2.setInt(2, user.getPin());
+					preparedStatement2.setInt(3, user.getAccountNumber());
+					rows = preparedStatement2.executeUpdate();
+					System.out.println("Rows updated: " + rows);
+					if (rows > 0) {
+						transactions = new Transactions();
+						transactions.setAccountNumber(user.getAccountNumber());
+						transactions.setAmount(user.getAmount());
+						dao.insertWithdraw(transactions);
+					}
+				} else {
+					rows = 100;
+				}
+			}
+			ConnectionUtil.close(connection, preparedStatement, resultSet);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-		ConnectionUtil.close(connection, preparedStatement, resultSet);
-
-		System.out.println(rows);
 		return rows;
 	}
 
-	public int changePassword(User user) throws SQLException {
-
-		Connection connection = ConnectionUtil.getConnection();
-		String sql = "update bank_user set password=? where pin=? and accountnumber=?";
-		PreparedStatement preparedStatement = connection.prepareStatement(sql);
-		preparedStatement.setString(1, user.getPassword());
-		preparedStatement.setInt(2, user.getPin());
-		preparedStatement.setInt(3, user.getAccountNumber());
-		int rows = preparedStatement.executeUpdate();
-
-		System.out.println("Rows updated: " + rows);
-
-		ConnectionUtil.close(connection, preparedStatement, null);
+	public int changePassword(User user) {
+		int rows = 0;
+		try {
+			Connection connection = ConnectionUtil.getConnection();
+			String sql = "update bank_user set password=? where pin=? and accountnumber=?";
+			PreparedStatement preparedStatement;
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, user.getPassword());
+			preparedStatement.setInt(2, user.getPin());
+			preparedStatement.setInt(3, user.getAccountNumber());
+			rows = preparedStatement.executeUpdate();
+			System.out.println("Rows updated: " + rows);
+			ConnectionUtil.close(connection, preparedStatement, null);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return rows;
-
 	}
 }

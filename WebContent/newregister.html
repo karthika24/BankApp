@@ -23,29 +23,34 @@
 <style>
 .container {
 	width: 50%;
-	padding-top:70px;
+	padding-top: 70px;
 }
+
 .registerbutton {
-padding-left:700px;
+	padding-left: 700px;
 }
+
 body {
-background-image: url("image/bank.jpg");
-background-size: 700px 700px;
+	background-image: url("image/bank.jpg");
+	background-size: 700px 700px;
 }
-h2{
-padding-left:300px;
+
+h2 {
+	padding-left: 300px;
 }
 </style>
 <body>
 
 	<div class="container">
-		<form class="form-horizontal" role="form" method="post" action="NewUserServlet">
+		<form class="form-horizontal" role="form" method="post"
+			action="NewUserServlet">
 			<h2>Registration</h2>
 			<div class="form-group">
 				<label for="Name" class="col-sm-3 control-label">Name*</label>
 				<div class="col-sm-9">
 					<input type="text" name="name" placeholder="Name"
-						pattern="[A-Za-z]+" class="form-control"  autofocus required>
+						pattern="[A-Za-z]+" maxlength="30" class="form-control" autofocus
+						required>
 				</div>
 			</div>
 			<div class="form-group">
@@ -59,7 +64,7 @@ padding-left:300px;
 				<label for="password" class="col-sm-3 control-label">Password*</label>
 				<div class="col-sm-9">
 					<input type="password" name="password" placeholder="Password"
-						class="form-control" required>
+						maxlength="10" class="form-control" required>
 				</div>
 			</div>
 			<div class="form-group">
@@ -88,8 +93,9 @@ padding-left:300px;
 			<div class="form-group">
 				<label for="pin" class="col-sm-3 control-label">Pin* </label>
 				<div class="col-sm-9">
-					<input type="tel" name="pin" pattern="[1-9]{4}"
-					 maxlength="4" placeholder="Please enter 4 digit pin" class="form-control" required>
+					<input type="tel" name="pin" pattern="[1-9]{4}" maxlength="4"
+						placeholder="Please enter 4 digit pin" class="form-control"
+						required>
 				</div>
 			</div>
 			<div class="form-group">
@@ -115,11 +121,13 @@ padding-left:300px;
 					<span class="help-block">*Required fields</span>
 				</div>
 			</div>
-			</div>
-			<div class="registerbutton"> <button type="submit" class="btn btn-primary">Register</button></div>
-		</form>
-		<!-- /form -->
-	
+	</div>
+	<div class="registerbutton">
+		<button type="submit" class="btn btn-primary">Register</button>
+	</div>
+	</form>
+	<!-- /form -->
+
 	<!-- ./container -->
 </body>
 </html>

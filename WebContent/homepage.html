@@ -5,34 +5,40 @@
 <title>Bank</title>
 <style>
 body {
-background-image: url("image/bank.jpg");
-background-size: 700px 700px;
+	background-image: url("image/bank.jpg");
+	background-size: 700px 700px;
 }
+
+.container {
+	text-align: right;
+	font-size: 50px;
+}
+
 .center {
-  margin: auto;
-  width: 50%;
-  border: 3px;
-  padding-top: 150px;
-  padding-right: 30px;
-  padding-bottom: 50px;
-  padding-left: 80px;
+	margin: auto;
+	width: 50%;
+	border: 3px;
+	padding-top: 150px;
+	padding-right: 30px;
+	padding-bottom: 50px;
+	padding-left: 80px;
 }
 </style>
 </head>
 <body>
-<div align="right">
+	<div class="container">
 		<a href="firstpage.html" class="btn btn-info btn-lg"> <span
 			class="glyphicon glyphicon-off"></span> Logout
 		</a>
 	</div>
-<div class="center">
-<h1>
-<a href="viewbalance.jsp">BALANCE ENQUIRY</a><br><br>
-<a href="withdraw.jsp">WITHDRAW</a><br><br>
-<a href="deposit.jsp">DEPOSIT</a><br><br>
-<a href="history.jsp">TRANSACTION HISTORY</a>
-</h1>
-</div>
+	<div class="center">
+		<h1>
+			<a href="viewbalance.jsp">BALANCE ENQUIRY</a><br> <br> <a
+				href="withdraw.jsp">WITHDRAW</a><br> <br> <a
+				href="deposit.jsp">DEPOSIT</a><br> <br> <a
+				href="history.jsp">TRANSACTION HISTORY</a>
+		</h1>
+	</div>
 
 </body>
 </html>
