@@ -126,7 +126,7 @@ public class UserDAO {
 			ResultSet resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
 				user1 = new User();
-				user1.setBankBalance(resultSet.getInt("bankbalance"));
+				user1.setBankBalance(resultSet.getFloat("bankbalance"));
 			}
 			ConnectionUtil.close(connection, preparedStatement, resultSet);
 		} catch (SQLException e) {
